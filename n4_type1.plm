@@ -1,0 +1,6 @@
+$M = new Matrix<Rational>( [[4,0,0,0],[0,4,0,0],[0,0,4,0],[0,0,0,4],[2,2,0,0],[0,2,2,0],[0,0,2,2],[2,0,0,2],[2,0,2,0],[0,2,0,2],[1,1,1,1]]);
+$w = new Vector<Rational>( [3,3,3,3,1,1,1,1,0,0,-1] );
+$S = new fan::SubdivisionOfPoints(POINTS=>ones_vector|$M,WEIGHTS=>$w);
+open(my $f, ">", "triang_n4_type1.out");
+print $f $S->MAXIMAL_CELLS;
+close $f;
