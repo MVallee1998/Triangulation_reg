@@ -5,8 +5,8 @@ from io import StringIO
 plt.ioff()
 def plot_triang(list_vertices=[0,1,2,3,4,5],index=0,n=6, radius=1):
     angles_small = np.linspace(0, 2 * np.pi, 100, endpoint=False)
-    x_coords_small = radius * np.cos(angles_small) * 0.1
-    y_coords_small = radius * np.sin(angles_small) * 0.1
+    x_coords_small = radius * np.cos(angles_small) * 0.15
+    y_coords_small = radius * np.sin(angles_small) * 0.15
     angles = np.linspace(0, 2 * np.pi, n, endpoint=False)
     x_coords = radius * np.cos(angles)
     y_coords = radius * np.sin(angles)
@@ -35,6 +35,7 @@ def plot_triang(list_vertices=[0,1,2,3,4,5],index=0,n=6, radius=1):
                 plt.plot(x_coords[u]+x_coords_small, y_coords[u]+y_coords_small, marker='', linestyle='-', color='r')
         for k in range(n):
             plt.plot(x_coords[k], y_coords[k], marker='o', linestyle='-', color='black')
+            plt.text(1.1*x_coords[k], 1.1*y_coords[k], "%d" % (k+1))
         plt.axis('equal')  # Equal aspect ratio for x and y axes
         plt.savefig("./n"+str(n)+"_type2_fig/fig_"+str(index)+".pdf",dpi=50)
         plt.close()
@@ -70,12 +71,13 @@ def plot_triang_type1(list_vertices=[0,1,2,3,4,5],index=0,n=6, radius=1):
                 plt.plot(0+x_coords_small, 0+y_coords_small, marker='', linestyle='-', color='g')
         for k in range(n):
             plt.plot(x_coords[k], y_coords[k], marker='o', linestyle='-', color='black')
+            plt.text(1.1*x_coords[k], 1.1*y_coords[k], "%d" % (k+1))
         plt.axis('equal')  # Equal aspect ratio for x and y axes
         plt.savefig("./n"+str(n)+"_type1_fig/fig_"+str(index)+".pdf",dpi=50)
         plt.close()
 
 def print_type2(n):
-    PATH_file = 'triang_n'+str(n)+'type_2.out'
+    PATH_file = 'triang_n'+str(n)+'_type2.out'
     with open(PATH_file) as f:
         lines_str = [line.strip() for line in f]
     lines = []
@@ -98,5 +100,7 @@ def print_type1(n):
         triang = lines[k]
         plot_triang_type1(triang,k,n)
 
-# print_type1(4)
+print_type1(4)
 print_type1(6)
+print_type2(4)
+print_type2(6)
